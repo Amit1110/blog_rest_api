@@ -4,7 +4,7 @@
 {{ block.super }}
 <h2>Form</h2>
 
-<form method="post" action="">
+<form method="post" action="" enctype="multipart/form-data">
 {% csrf_token %}
 {{ form.as_p }}
 

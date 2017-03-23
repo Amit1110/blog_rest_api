@@ -2,7 +2,9 @@
 
 {% block content %}
 <h1>{{ obj.title }}</h1>
-<h3>{{ obj.text }}</h3>
-<h4>{{ obj.timestamp }}</h4>
+{% if obj.image %}
+    <img src="{{ obj.image.url }}" >
+{% endif %}
+<h4>{{ obj.timestamp|timesince }}</h4>
 <h4>{{ obj.modified }}</h4>
 {% endblock %}

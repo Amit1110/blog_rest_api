@@ -5,7 +5,7 @@ from .models import Post
 from .forms import PostForm
 
 def post_put(request):
-    form = PostForm(request.POST or None)
+    form = PostForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         object = form.save(commit=False)
         object.save()
@@ -27,7 +27,7 @@ def post_put(request):
 
 def edit(request, pk=None):
     obj = get_object_or_404(Post, pk=pk)
-    form = PostForm(request.POST or None, instance=obj)
+    form = PostForm(request.POST or None, request.FILES or None, instance=obj)
     if form.is_valid():
         object = form.save(commit=False)
         object.save()
