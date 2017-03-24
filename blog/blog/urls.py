@@ -17,13 +17,18 @@ from django.conf import settings
 from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
-
+from rest_framework.urlpatterns import format_suffix_patterns
+from newsfeed import views
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^newsfeed/', include('newsfeed.urls', namespace='newsfeed')),
+    url(r'^PostAPI/', views.PostList.as_view()),
+    url(r'^PostAPIDetail/(?P<pk>[0-9]+)/', views.PostDetail),
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns, allowed=['html','json'])
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
